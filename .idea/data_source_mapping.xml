@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/eb3160fe-4ee5-43f0-85e9-a3804828c2ff/console.sql" value="eb3160fe-4ee5-43f0-85e9-a3804828c2ff" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V1__create_table_wine.sql" value="eb3160fe-4ee5-43f0-85e9-a3804828c2ff" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V2__insert_user_admin.sql" value="eb3160fe-4ee5-43f0-85e9-a3804828c2ff" />
   </component>
 </project>
