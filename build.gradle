@@ -1,0 +1,53 @@
+buildscript {
+    repositories { mavenCentral() }
+    dependencies {
+        classpath "org.flywaydb:flyway-database-postgresql:11.13.2"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.flywaydb.flyway' version '11.13.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+
+    implementation 'org.flywaydb:flyway-core:11.13.2'
+    implementation 'org.flywaydb:flyway-database-postgresql:11.13.2'
+    implementation 'org.postgresql:postgresql:42.7.8'
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+application {
+    mainClass = 'com.nicoletti.wineapp.WineApp'
+}
+
+tasks.test { useJUnitPlatform() }
+
+tasks.matching { it.name.startsWith("flyway") }.configureEach {
+    notCompatibleWithConfigurationCache("Flyway Gradle plugin ainda não suporta configuration cache.")
+}
+
+flyway {
+    url = System.getenv('FLYWAY_URL') ?: 'jdbc:postgresql://localhost:5432/db_wine'
+    user = System.getenv('FLYWAY_USER') ?: 'postgres'
+    password = System.getenv('FLYWAY_PASSWORD') ?: 'postgres'
+    schemas = ['public']
+    locations = ['filesystem:src/main/resources/db/migration']
+    configurations = ['compileClasspath']
+}
+
+tasks.jar {
+    manifest {
+        attributes('Main-Class': 'com.nicoletti.wineapp.WineApp')
+    }
+}

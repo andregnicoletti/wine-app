@@ -1,0 +1,3 @@
+-- Executado apenas na primeira inicialização do container (volume vazio).
+-- Pode adicionar configurações iniciais aqui. Mantemos 'public' padrão.
+-- SELECT now();

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nicoletti.wineapp.WineAppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-08T02:44:24" hostname="e490" time="0.03">
+  <properties/>
+  <testcase name="sanity()" classname="com.nicoletti.wineapp.WineAppTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
