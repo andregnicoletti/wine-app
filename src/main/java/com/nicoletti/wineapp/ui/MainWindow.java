@@ -1,7 +1,7 @@
 package com.nicoletti.wineapp.ui;
 
 import com.nicoletti.wineapp.model.Wine;
-import com.nicoletti.wineapp.service.WineService;
+import com.nicoletti.wineapp.service.api.WineService;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

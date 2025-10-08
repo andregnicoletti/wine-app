@@ -1,4 +1,4 @@
-package com.nicoletti.wineapp.service;
+package com.nicoletti.wineapp.service.api;
 
 import com.nicoletti.wineapp.model.Wine;
 
