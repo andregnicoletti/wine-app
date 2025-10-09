@@ -12,7 +12,8 @@ public class MenuPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        desktopPane = new JDesktopPane();
+//        desktopPane = new JDesktopPane();
+        desktopPane = new DesktopComImagem("wine.jpeg");
         setContentPane(desktopPane);
 
         JMenuBar menuBar = new JMenuBar();
@@ -43,6 +44,22 @@ public class MenuPrincipal extends JFrame {
         setJMenuBar(menuBar);
 
     }
+
+//    static class DesktopComFundo extends JDesktopPane {
+//
+//        private Image imageFundo;
+//
+//        public DesktopComFundo(String caminhoImagem) {
+//            this.imageFundo = new ImageIcon(caminhoImagem).getImage();
+//        }
+//
+//        @Override
+//        public void paintComponent(Graphics g) {
+//            super.paintComponent(g);
+//            g.drawImage(imageFundo, 0, 0, getWidth(), getHeight(), this);
+//        }
+//
+//    }
 
 }
 
