@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class LoginAction extends AbstractAction {
 
@@ -44,13 +45,16 @@ public class LoginAction extends AbstractAction {
             return;
         }
 
-        boolean ok = authService.authenticate(usuario, Arrays.copyOf(senha, senha.length));
-        if (ok) {
-            JOptionPane.showMessageDialog(parent, "Logado com sucesso!");
-            //TODO - navegar para a próxima tela
-            new MenuPrincipal().setVisible(true);
-            //TODO - dispose da tela anterior
+        if (authService.authenticate(usuario, Arrays.copyOf(senha, senha.length))) {
 
+            // Abre a próxima tela
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            menuPrincipal.setLocationRelativeTo(null);
+            menuPrincipal.setVisible(true);
+
+            // Fecha a janela de login
+            Component component = (Component) e.getSource();
+            Optional.ofNullable(SwingUtilities.getWindowAncestor(component)).ifPresent(Window::dispose);
 
         } else {
             JOptionPane.showMessageDialog(parent, "Usuário ou senha inválidos.");

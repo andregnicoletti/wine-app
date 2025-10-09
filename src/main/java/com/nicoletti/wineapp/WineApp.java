@@ -1,16 +1,17 @@
 package com.nicoletti.wineapp;
 
+import com.nicoletti.wineapp.service.impl.AuthServiceImpl;
+import com.nicoletti.wineapp.ui.LoginWindow;
+
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import com.nicoletti.wineapp.ui.MainWindow;
 
 public class WineApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             setSystemLookAndFeel();
-            MainWindow window = new MainWindow();
+            LoginWindow window = new LoginWindow(new AuthServiceImpl());
             window.setVisible(true);
         });
     }
