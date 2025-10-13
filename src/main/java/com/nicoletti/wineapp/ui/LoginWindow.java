@@ -71,8 +71,33 @@ public class LoginWindow extends JFrame {
 
 
     public static void main(String[] args) {
-        AuthServiceImpl authService = new AuthServiceImpl();
-        new LoginWindow(authService);
+
+
+        JWindow splashScreen = new JWindow();
+
+        JLabel label = new JLabel("Carregando sistema de vinhos...", SwingConstants.CENTER);
+        label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+        splashScreen.getContentPane().add(label);
+
+        splashScreen.setSize(300, 100);
+        splashScreen.setLocationRelativeTo(null);
+        splashScreen.setVisible(true);
+
+        // Mantém a UI responsiva
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000); // tempo de splash
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            SwingUtilities.invokeLater(() -> {
+                splashScreen.dispose();
+                AuthServiceImpl authService = new AuthServiceImpl();
+                new LoginWindow(authService);
+            });
+        }).start();
+
     }
 
 }

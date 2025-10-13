@@ -1,12 +1,18 @@
 package com.nicoletti.wineapp.ui;
 
 import javax.swing.*;
+import java.sql.Connection;
 
 public class MenuPrincipal extends JFrame {
 
-    private JDesktopPane desktopPane;
+    private final Connection connection;
 
-    public MenuPrincipal() {
+    private final JDesktopPane desktopPane;
+
+
+    public MenuPrincipal(Connection connection) {
+        this.connection = connection;
+
         setTitle("Sistema para controle de Vinhos");
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

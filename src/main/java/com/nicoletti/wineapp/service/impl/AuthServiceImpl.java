@@ -12,8 +12,8 @@ import java.sql.SQLException;
 public class AuthServiceImpl implements AuthService {
 
     @Override
-    public boolean authenticate(String usuario, char[] senha) {
-        boolean isAuth = false;
+    public Connection authenticate(String usuario, char[] senha) {
+        Connection conn = null;
         try {
             Connection connection = ConnectionDatabaseFactory.getConnection("localhost", 5432, "db_wine", "postgres", "postgres");
 
@@ -22,12 +22,15 @@ public class AuthServiceImpl implements AuthService {
             usuarioVO.setSenha(HashUtils.criarMD5(String.valueOf(senha)));
 
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            isAuth = usuarioDAO.selectByUsuarioESenha(usuarioVO);
+            boolean isAuth = usuarioDAO.selectByUsuarioESenha(usuarioVO);
+            if (isAuth) {
+                return connection;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Erro na autenticação: " + e.getMessage());
         }
-        return isAuth;
+        return conn;
     }
 }

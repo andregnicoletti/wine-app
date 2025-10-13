@@ -1,7 +1,9 @@
 package com.nicoletti.wineapp.service.api;
 
+import java.sql.Connection;
+
 public interface AuthService {
 
-    boolean authenticate(String usuario, char[] senha);
+    Connection authenticate(String usuario, char[] senha);
 
 }

@@ -6,7 +6,9 @@ import com.nicoletti.wineapp.ui.MenuPrincipal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 
 public class LoginAction extends AbstractAction {
@@ -45,10 +47,11 @@ public class LoginAction extends AbstractAction {
             return;
         }
 
-        if (authService.authenticate(usuario, Arrays.copyOf(senha, senha.length))) {
+        Connection connection = authService.authenticate(usuario, Arrays.copyOf(senha, senha.length));
+        if (!Objects.isNull(connection)) {
 
             // Abre a próxima tela
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            MenuPrincipal menuPrincipal = new MenuPrincipal(connection);
             menuPrincipal.setLocationRelativeTo(null);
             menuPrincipal.setVisible(true);
 
